@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div id="nav-bar">
+      <div id="logo-container-nav">
+        <span class="logo-nav"><i class="fas fa-wallet"></i></span>
+        <span class="logo-cash-nav">CASH-X</span>
+      </div>
+      <div id="diff-pages-nav">
+        <ul class="ul-container-nav">
+          <li><a href="">Dashboard</a></li>
+          <li><a href="">Transactions</a></li>
+          <li><a href="">Teams</a></li>
+          <li><a href="">History</a></li>
+        </ul>
+      </div>
+      <div id="profile-section-nav">
+        <div class="profile-bag-nav">
+          <span>Profile</span>
+          <div class="profile-photo-div">
+            <img src="./img/img.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="container">
+      <!-- left-side-section -->
+      <div class="hamburger-icon-side-section">Ξ</div>
+      <div id="side-section">
+        <div class="options-in-side-section">
+          <div class="arrow-right arrow-right-side-section"></div>
+          <span>Monthly graph</span>
+        </div>
+        <div class="vertical-line-spacer-side-section"><hr /></div>
+        <div class="options-in-side-section">
+          <div class="arrow-right arrow-right-side-section"></div>
+          <span>Debit vs Credit</span>
+        </div>
+        <div class="vertical-line-spacer-side-section"><hr /></div>
+        <div class="options-in-side-section">
+          <div class="arrow-right arrow-right-side-section"></div>
+          <span>Compare</span>
+        </div>
+        <div class="vertical-line-spacer-side-section"><hr /></div>
+        <div class="options-in-side-section">
+          <div class="arrow-right arrow-right-side-section"></div>
+          <span>Settings</span>
+        </div>
+        <div class="vertical-line-spacer-side-section"><hr /></div>
+      </div>
+
+      <!-- right-side-section -->
+      <div id="right-side-section">
+        <div class="top-heading-of-right-side-section">
+        <span>Take Notes</span> 
+        <i class="fas fa-plus-circle" id="addNotes"></i>      
+        </div>
+
+        <div id="notes-container-right-side-section">
+          <div class="vertical-spacer-right-side-section"></div>
+          <div class="notes-right-side-section">
+            <div class="notes-top-right-side-section">
+              <i class="far fa-star star-in-notes"></i>
+              <span>14/04/22</span>
+              <span>23:45:56</span>
+              <i class="far fa-trash-alt deleteNotes"></i>
+            </div>
+            <div class="textarea-container-notes-right-side-section">
+              <textarea name="" id="" cols="41" rows="10">this is working</textarea>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- mid-section -->
+      <div id="main-mid-container">
+        <div id="curve_chart" style="width: 38rem; height: 28rem"></div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="./dashboard.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <script type="text/javascript">
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // var data = google.visualization.arrayToDataTable([
+        //   ['Year', 'Sales', 'Expenses'],
+        //   ['2004',  1000,      400],
+        //   ['2005',  1170,      460],
+        //   ['2006',  660,       1120],
+        //   ['2007',  1030,      540]
+        // ]);
+        var data = google.visualization.arrayToDataTable([
+          ["game", "Profit", "Loss"],
+          ["2004", 1000, 400],
+          ["2005", 1170, 460],
+          ["2006", 10100, 1120],
+          ["2008", 1030, 540],
+          ["2009", 50030, 540],
+          ["2010", 1030, -5000],
+          ["2011", 1030, 540],
+          ["2011", 1030, 540]
+       
+        ]);
+
+        var options = {
+          title: "Month Performance",
+          curveType: "function",
+          legend: { position: "bottom" },
+          explorer: {
+            maxZoomOut: 1,
+            maxZoomIn: 9,
+            keepInBounds: true,
+          },
+        
+          backgroundColor: "rgb(245, 245, 245)",
+          chartArea: { left: 85, width: "80%", height: "70%" },
+        };
+
+        var chart = new google.visualization.LineChart(
+          document.getElementById("curve_chart")
+        );
+
+        chart.draw(data, options);
+      }
+    </script>
+  </body>
+</html>
